@@ -6,8 +6,15 @@ import play_icon from "../../assets/play_icon.png";
 import info_icon from "../../assets/info_icon.png";
 import TitleCards from "../../components/TitleCards/TitleCards";
 import Footer from "../../components/Footer/Footer";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-const Home = () => {
+const Home = ({ isLoggedIn, userEmail }) => {
+
+  useEffect(() => {
+    if(isLoggedIn) toast.success(`Logged in as ${userEmail} !`)
+  }, []);
+
   return (
     <div className="home">
       <NavBar />
@@ -21,9 +28,11 @@ const Home = () => {
             immortal enemy
           </p>
           <div className="hero-btns">
-            <button className="btn">
-              <img src={play_icon} alt="" /> Play
-            </button>
+            <a href="#cards">
+              <button className="btn">
+                <img src={play_icon} alt="" /> Play
+              </button>
+            </a>
             <button className="btn dark-btn">
               <img src={info_icon} alt="" /> More Info
             </button>
@@ -32,11 +41,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="more-cards">
-        <TitleCards title={"Blockbuster Movies"} category="top_rated"/>
-        <TitleCards title={"Only on Netflix"} category="popular"/>
-        <TitleCards title={"Upcoming"} category="upcoming"/>
-        <TitleCards title={"Top Pics for You"}/>
+      <div className="more-cards" id="cards">
+        <TitleCards title={"Blockbuster Movies"} category="top_rated" />
+        <TitleCards title={"Only on Netflix"} category="popular" />
+        <TitleCards title={"Upcoming"} category="upcoming" />
+        <TitleCards title={"Top Pics for You"} />
       </div>
       <Footer />
     </div>

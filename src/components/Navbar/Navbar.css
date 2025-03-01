@@ -79,3 +79,32 @@
   font-size: 13px;
   cursor: pointer;
 }
+
+.nav-dark {
+  background: linear-gradient(to left, #141414, rgba(0, 0, 0, 0.75));
+  transition: all 500ms ease;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 20px 4%;
+  }
+  .navbar-left ul {
+    display: none;
+  }
+  .navbar img {
+    height: 25px;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar img {
+    height: 20px;
+  }
+  .profile {
+    height: 32px !important;
+  }
+  .navbar-right {
+    gap: 10px;
+  }
+}

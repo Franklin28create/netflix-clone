@@ -1,7 +1,7 @@
 import "./TitleCards.css";
-import cards_data from "../../assets/cards/Cards_data";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const TitleCards = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
@@ -10,8 +10,7 @@ const TitleCards = ({ title, category }) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjRlODBiNGFlZWQ2NjQyYWJhMzIwMmZhY2M0MTJhNyIsIm5iZiI6MTc0MDA3MDc0MS43MTI5OTk4LCJzdWIiOiI2N2I3NWY1NWEyMjg0NjY2ZjFlYWZhNTEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.v2Lae2gUEKxtjFsUg8viQTPDYIlZO2Ud3HkBKfy3lLk",
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
     },
   };
 
@@ -38,13 +37,13 @@ const TitleCards = ({ title, category }) => {
       <h2>{title ? title : "Popular On Netflix"}</h2>
       <div className="card-list" ref={cardsRef}>
         {apiData.map((card, i) => (
-          <div className="card" key={i}>
+          <Link to={`/player/${card.id}`} className="card" key={i} data-index={`${i + 1}`}>
             <img
               src={`https://image.tmdb.org/t/p/w500/` + card.backdrop_path}
               alt=""
             />
             <p>{card.original_title}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
